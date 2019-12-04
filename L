@@ -901,7 +901,6 @@ contract ERC721MetadataMintable is ERC721, ERC721Metadata, MinterRole {
     string tokenURI
   )
     public
-    onlyMinter
     returns (bool)
   {
     
