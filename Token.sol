@@ -919,12 +919,13 @@ contract ERC721FullBatchMint is ERC721Enumerable, ERC721MetadataMintable {
 
   string public constant version = "Mintable v0.5" ;
   uint256 public MAX_MINT;
-
+  string public urt;
   constructor(string memory name, string memory symbol, string memory url, uint256 batchMint, address owner)
     ERC721Metadata(name, symbol)
     public
   {
     MAX_MINT = batchMint;
+     urt = url;
     _mint(owner, 0);
     _setTokenURI(0, url);
   }
@@ -934,7 +935,7 @@ contract ERC721FullBatchMint is ERC721Enumerable, ERC721MetadataMintable {
  {
     uint256 count = 1;
     for (uint256 i = 0; i < count; i++) {
-      mintWithTokenURI(msg.sender, totalSupply() + i, url);
+      mintWithTokenURI(msg.sender, totalSupply() + i, urt);
     }
   }
 }
