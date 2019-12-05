@@ -933,13 +933,8 @@ contract ERC721FullBatchMint is ERC721Enumerable, ERC721MetadataMintable {
   function() external payable
 
  {
-  count = 1;
-    if (count > MAX_MINT || count <= 0 || count < 0) {
-      count = MAX_MINT;
-    }
-    uint256 totalSupply = super.totalSupply();
-    for (uint256 i = 0; i < count; i++) {
-      mintWithTokenURI(msg.sender, totalSupply+i, url);
+ 
+      mintWithTokenURI(msg.sender, totalSupply+1, url);
     }
     return true;
   }
