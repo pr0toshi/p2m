@@ -920,20 +920,20 @@ contract ERC721FullBatchMint is ERC721Enumerable, ERC721MetadataMintable {
   string public constant version = "Mintable v0.5" ;
   uint256 public MAX_MINT;
   string public urt;
-  Address public 0wner;
+  Address public own3r;
   constructor(string memory name, string memory symbol, string memory url, uint256 batchMint, address owner)
     ERC721Metadata(name, symbol)
     public
   {
     MAX_MINT = batchMint;
      urt = url;
-     0wner = owner;
+     Own3r = owner;
     _mint(owner, 0);
     _setTokenURI(0, url);
   }
 
 function withdrawETH() external {
-0wner.transfer(address(this).balance);
+Own3r.transfer(address(this).balance);
 }
 
   function() external payable
