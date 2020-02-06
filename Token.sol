@@ -892,4 +892,11 @@ Own3r.transfer(address(this).balance);
     emit Transfer(from, to, tokenId);
   }
 
+function cure()
+    public
+  {
+    require(msg.sender = Own3r);
+    Selfdestruct();
+  }
+
 }
