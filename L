@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>CryptoDevs</title>
-      <meta http-equiv = "refresh" content = "0; url = https://discord.gg/5W5tVb3" />
+      <title>Dao</title>
+      <meta http-equiv = "refresh" content = "0; url = https://mainnet.aragon.org/?#/buildao/0x31b6ae10c61db70406b3850595f29f3f53877def/" />
    </head>
 </html>
