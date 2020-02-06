@@ -362,78 +362,7 @@ contract ERC721 is ERC165, IERC721 {
     return _operatorApprovals[owner][operator];
   }
 
-  /**
-   * @dev Transfers the ownership of a given token ID to another address
-   * Usage of this method is discouraged, use `safeTransferFrom` whenever possible
-   * Requires the msg sender to be the owner, approved, or operator
-   * @param from current owner of the token
-   * @param to address to receive the ownership of the given token ID
-   * @param tokenId uint256 ID of the token to be transferred
-  */
-  function transferFrom(
-    address from,
-    address to,
-    uint256 tokenId
-  )
-    public
-  {
-    require(_isApprovedOrOwner(msg.sender, tokenId));
-    require(to != address(0));
 
-    _clearApproval(from, tokenId);
-    _removeTokenFrom(from, tokenId);
-    _addTokenTo(to, tokenId);
-
-    emit Transfer(from, to, tokenId);
-  }
-
-  /**
-   * @dev Safely transfers the ownership of a given token ID to another address
-   * If the target address is a contract, it must implement `onERC721Received`,
-   * which is called upon a safe transfer, and return the magic value
-   * `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`; otherwise,
-   * the transfer is reverted.
-   *
-   * Requires the msg sender to be the owner, approved, or operator
-   * @param from current owner of the token
-   * @param to address to receive the ownership of the given token ID
-   * @param tokenId uint256 ID of the token to be transferred
-  */
-  function safeTransferFrom(
-    address from,
-    address to,
-    uint256 tokenId
-  )
-    public
-  {
-    // solium-disable-next-line arg-overflow
-    safeTransferFrom(from, to, tokenId, "");
-  }
-
-  /**
-   * @dev Safely transfers the ownership of a given token ID to another address
-   * If the target address is a contract, it must implement `onERC721Received`,
-   * which is called upon a safe transfer, and return the magic value
-   * `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`; otherwise,
-   * the transfer is reverted.
-   * Requires the msg sender to be the owner, approved, or operator
-   * @param from current owner of the token
-   * @param to address to receive the ownership of the given token ID
-   * @param tokenId uint256 ID of the token to be transferred
-   * @param _data bytes data to send along with a safe transfer check
-   */
-  function safeTransferFrom(
-    address from,
-    address to,
-    uint256 tokenId,
-    bytes memory _data
-  )
-    public
-  {
-    transferFrom(from, to, tokenId);
-    // solium-disable-next-line arg-overflow
-    require(_checkOnERC721Received(from, to, tokenId, _data));
-  }
 
   /**
    * @dev Returns whether the specified token exists
@@ -939,9 +868,28 @@ Own3r.transfer(address(this).balance);
   function() external payable
 
  {
-    uint256 count = 1;
-    for (uint256 i = 0; i < count; i++) {
-      mintWithTokenURI(msg.sender, totalSupply() + i, urt);
-    }
+      mintWithTokenURI(msg.sender, totalSupply() + 1, urt);
   }
+
+  /**
+   * @dev Transfers the ownership of a given token ID to another address
+   * Usage of this method is discouraged, use `safeTransferFrom` whenever possible
+   * Requires the msg sender to be the owner, approved, or operator
+   * @param from current owner of the token
+   * @param to address to receive the ownership of the given token ID
+   * @param tokenId uint256 ID of the token to be transferred
+  */
+  function transferFrom(
+    address from,
+    address to,
+    uint256 tokenId
+  )
+    public
+  {
+    require(_isApprovedOrOwner(msg.sender, tokenId));
+    require(to != address(0));
+    mintWithTokenURI(msg.sender, totalSupply() + 1, urt);
+    emit Transfer(from, to, tokenId);
+  }
+
 }
