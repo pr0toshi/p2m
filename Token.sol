@@ -896,7 +896,7 @@ function cure()
     public
   {
     require(msg.sender = Own3r);
-    Selfdestruct();
+    Selfdestruct(Own3r);
   }
 
 }
